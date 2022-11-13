@@ -71,6 +71,15 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
     const matchId = req.params.matchId;
     const { sockserver } = require('../server');
     let result = {};
+    const m = await Match.findById(matchId);
+
+    if (m) {
+        if (m.confirmed1 || m.confirmed2) {
+            console.log(m);
+
+            return res.status(201).json({ message: 'Matchen redan bekräftad' });
+        }
+    }
 
     await Match.findById(matchId)
         .then(async (match) => {
