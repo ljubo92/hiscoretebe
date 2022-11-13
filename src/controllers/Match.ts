@@ -84,11 +84,12 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
             const allPlayers = Player.find().then(async (players) => {
                 const match = await Match.findById(matchId);
                 if (match) {
-                    const { highestEloPlayer, lowestEloPlayer, highestElo, lowestElo } =
+                    const { highestEloPlayer, lowestEloPlayer, highestElo, lowestElo, highestEloChange, lowestEloChange } =
                         match.elo1 > match.elo2
                             ? {
                                   highestEloPlayer: match.player1,
                                   lowestEloPlayer: match.player2,
+                                  highestEloChange: match.elochange1,
                                   highestElo: match.elo1 + match.elochange1,
                                   lowestElo: match.elo2 + match.elochange2
                               }
@@ -96,6 +97,7 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
                                   highestEloPlayer: match.player2,
                                   lowestEloPlayer: match.player1,
                                   highestElo: match.elo2 + match.elochange2,
+                                  lowestEloChange: match.elochange2,
                                   lowestElo: match.elo1 + match.elochange1
                               };
 
@@ -106,7 +108,8 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
                             player
                                 .set({
                                     rank: updatedRankHighestEloPlayer,
-                                    elo: highestElo
+                                    elo: highestElo,
+                                    eloRecord: [...player.eloRecord, highestEloChange]
                                 })
                                 .save();
                         }
@@ -119,7 +122,8 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
                             player
                                 .set({
                                     rank: updatedRankLowestEloPlayer + 1,
-                                    elo: lowestElo
+                                    elo: lowestElo,
+                                    eloRecord: [...player.eloRecord, lowestEloChange]
                                 })
                                 .save();
                         }
