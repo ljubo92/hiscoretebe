@@ -110,7 +110,7 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
                             player
                                 .set({
                                     rank: updatedRankHighestEloPlayer,
-                                    elo: highestElo,
+                                    elo: player.elo + highestEloChange,
                                     eloRecord: [...player.eloRecord, highestEloChange]
                                 })
                                 .save();
@@ -124,7 +124,7 @@ const updateMatch = async (req: Request, res: Response, next: NextFunction) => {
                             player
                                 .set({
                                     rank: updatedRankLowestEloPlayer + 1,
-                                    elo: lowestElo,
+                                    elo: player.elo + lowestEloChange,
                                     eloRecord: [...player.eloRecord, lowestEloChange]
                                 })
                                 .save();
