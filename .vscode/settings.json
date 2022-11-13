@@ -1,0 +1,9 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.wordWrap": "on",
+    "appService.defaultWebAppToDeploy": "/subscriptions/51f6161c-5b7d-4516-a78a-8fb0523035d7/AppServices/subscriptions/51f6161c-5b7d-4516-a78a-8fb0523035d7/resourceGroups/hiscoret1-rg/providers/Microsoft.Web/sites/hiscoretetestapi",
+    "appService.deploySubpath": "."
+}

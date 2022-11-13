@@ -1,0 +1,47 @@
+Date : 2022-11-04 22:21:22
+Directory : c:\Users\ljubo\Desktop\backend
+Total : 14 files,  3452 codes, 94 comments, 86 blanks, all 3632 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          3 |      3,132 |          0 |          3 |      3,135 |
+| TypeScript         |          9 |        302 |         10 |         72 |        384 |
+| JSON with Comments |          1 |         12 |         84 |          9 |        105 |
+| Properties         |          1 |          6 |          0 |          2 |          8 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                        |         14 |      3,452 |         94 |         86 |      3,632 |
+| src                                                      |          9 |        302 |         10 |         72 |        384 |
+| src\config                                               |          1 |         14 |          0 |          5 |         19 |
+| src\controllers                                          |          2 |        150 |          3 |         28 |        181 |
+| src\library                                              |          1 |          7 |          0 |          5 |         12 |
+| src\models                                               |          2 |         55 |          0 |         10 |         65 |
+| src\routes                                               |          2 |         21 |          0 |          8 |         29 |
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                 | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\ljubo\Desktop\backend\.env                      | Properties         |          6 |          0 |          2 |          8 |
+| c:\Users\ljubo\Desktop\backend\.prettierrc               | JSON               |         10 |          0 |          1 |         11 |
+| c:\Users\ljubo\Desktop\backend\package-lock.json         | JSON               |      3,088 |          0 |          1 |      3,089 |
+| c:\Users\ljubo\Desktop\backend\package.json              | JSON               |         34 |          0 |          1 |         35 |
+| c:\Users\ljubo\Desktop\backend\src\config\config.ts      | TypeScript         |         14 |          0 |          5 |         19 |
+| c:\Users\ljubo\Desktop\backend\src\controllers\Match.ts  | TypeScript         |         62 |          0 |         13 |         75 |
+| c:\Users\ljubo\Desktop\backend\src\controllers\Player.ts | TypeScript         |         88 |          3 |         15 |        106 |
+| c:\Users\ljubo\Desktop\backend\src\library\Logging.ts    | TypeScript         |          7 |          0 |          5 |         12 |
+| c:\Users\ljubo\Desktop\backend\src\models\Match.ts       | TypeScript         |         36 |          0 |          5 |         41 |
+| c:\Users\ljubo\Desktop\backend\src\models\Player.ts      | TypeScript         |         19 |          0 |          5 |         24 |
+| c:\Users\ljubo\Desktop\backend\src\routes\Match.ts       | TypeScript         |         10 |          0 |          4 |         14 |
+| c:\Users\ljubo\Desktop\backend\src\routes\Player.ts      | TypeScript         |         11 |          0 |          4 |         15 |
+| c:\Users\ljubo\Desktop\backend\src\server.ts             | TypeScript         |         55 |          7 |         16 |         78 |
+| c:\Users\ljubo\Desktop\backend\tsconfig.json             | JSON with Comments |         12 |         84 |          9 |        105 |
+| Total                                                    |                    |      3,452 |         94 |         86 |      3,632 |
++----------------------------------------------------------+--------------------+------------+------------+------------+------------+
