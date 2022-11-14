@@ -23,7 +23,7 @@ const passwordResetLink = async (req: Request, res: Response, next: NextFunction
             }).save();
         }
 
-        const link = `https://hiscoretefe.web.app/password-reset?id=${user._id}&token=${token.token}&username=${user.username}`;
+        const link = `https://hiscoretefe.web.app/password-reset?id=${user._id}&token=${token.token}&user=${user.username}`;
         await sendEmail(user.email, 'Password reset', link);
 
         res.send('password reset link sent to your email account');
