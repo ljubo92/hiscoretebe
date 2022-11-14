@@ -6,6 +6,8 @@ export interface IPlayer {
     elo: number;
     eloRecord: Array<number>;
     rank: number;
+    token: string;
+    email: string;
 }
 
 export interface IPlayerModel extends IPlayer, Document {}
@@ -17,7 +19,8 @@ const PlayerSchema: Schema = new Schema(
         elo: { type: Number, required: false },
         email: { type: String, required: false },
         eloRecord: { type: Array, required: false },
-        rank: { type: Number, required: false }
+        rank: { type: Number, required: false },
+        token: { type: String, required: false }
     },
     {
         versionKey: false

@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [https://backend-hsnp.onrender.com](https://backend-hsnp.onrender.com) to view it in your browser.
+Open [http://localhost:1337](http://localhost:1337) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

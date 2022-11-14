@@ -1,10 +1,57 @@
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Player from '../models/Player';
+import Token from '../models/Token';
 
+const sendEmail = require('../utils/sendEmail');
 const bcrypt = require('bcryptjs'); // import bcrypt to hash passwords
 const jwt = require('jsonwebtoken'); // import jwt to sign tokens
 const { SECRET = 'secret' } = process.env;
+
+const passwordResetLink = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = await Player.findOne({ email: req.body.email });
+
+        if (!user) return res.status(400).send("user with given email doesn't exist");
+
+        let token = await Token.findOne({ userId: user._id });
+
+        if (!token) {
+            token = await new Token({
+                userId: user._id,
+                token: await jwt.sign({ username: user.username }, SECRET)
+            }).save();
+        }
+
+        const link = `https://hiscoretefe.web.app/password-reset?id=${user._id}&token=${token.token}&username=${user.username}`;
+        await sendEmail(user.email, 'Password reset', link);
+
+        res.send('password reset link sent to your email account');
+    } catch (error) {
+        res.send('An error occured');
+        console.log(error);
+    }
+};
+const passwordReset = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = await Player.findById(req.params.userId);
+        if (!user) return res.status(400).send('invalid link or expired');
+
+        const token = await Token.findOne({
+            userId: user._id,
+            token: req.params.token
+        });
+        if (!token) return res.status(400).send('Invalid link or expired');
+
+        user.password = req.body.password;
+        await user.save();
+        await token.delete();
+
+        res.send('password reset sucessfully.');
+    } catch (error) {
+        res.send('An error occured');
+    }
+};
 
 const createPlayer = async (req: Request, res: Response, next: NextFunction) => {
     const { username, password, firstname, surname, email, elo } = req.body;
@@ -108,4 +155,4 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default { createPlayer, readPlayer, readAll, updatePlayer, updatePlayerElo, deletePlayer, signIn };
+export default { createPlayer, readPlayer, readAll, updatePlayer, updatePlayerElo, deletePlayer, signIn, passwordReset, passwordResetLink };

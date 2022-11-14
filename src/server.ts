@@ -86,5 +86,10 @@ const StartServer = () => {
         ws.on('close', () => console.log('Client has disconnected!'));
     });
 
+    const https = require('https');
+    setInterval(() => {
+        https.get('https://backend-hsnp.onrender.com');
+    }, 10 * 60 * 1000);
+
     module.exports.sockserver = sockserver;
 };
