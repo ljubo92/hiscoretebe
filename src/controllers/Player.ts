@@ -74,13 +74,13 @@ const createPlayer = async (req: Request, res: Response, next: NextFunction) => 
 const readPlayer = (req: Request, res: Response, next: NextFunction) => {
     const username = req.params.username;
 
-    return Player.find({ username: username })
+    return Player.find({ username: username }, { password: 0, email: 0 })
         .then((player) => (player ? res.status(200).json({ player: player.length > 0 ? player[0] : {} }) : res.status(404).json({ message: 'NotFound' })))
         .catch((error) => res.status(500).json({ error }));
 };
 
 const readAll = (req: Request, res: Response, next: NextFunction) => {
-    return Player.find()
+    return Player.find({}, { password: 0, email: 0 })
         .then((players) => res.status(200).json({ players }))
         .catch((error) => res.status(500).json({ error }));
 };

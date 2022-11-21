@@ -88,7 +88,7 @@ const StartServer = () => {
 
     const https = require('https');
     setInterval(() => {
-        https.get('https://backend-hsnp.onrender.com');
+        https.get('http://localhost:1337');
     }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
