@@ -89,7 +89,7 @@ const StartServer = () => {
 
     setInterval(() => {
         axios.get('https://backend-hsnp.onrender.com');
-    }, 5 * 1000);
+    }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
 };
