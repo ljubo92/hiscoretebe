@@ -5,6 +5,7 @@ import { config } from './config/config';
 import Logging from './library/Logging';
 import playerRoutes from './routes/Player';
 import matchRoutes from './routes/Match';
+import axios from 'axios';
 const morgan = require('morgan');
 const { log } = require('mercedlogger');
 const cors = require('cors');
@@ -87,8 +88,8 @@ const StartServer = () => {
     });
 
     setInterval(() => {
-        fetch('https://backend-hsnp.onrender.com');
-    }, 10 * 60 * 1000);
+        axios.get('https://backend-hsnp.onrender.com');
+    }, 5 * 1000);
 
     module.exports.sockserver = sockserver;
 };
