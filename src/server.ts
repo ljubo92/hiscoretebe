@@ -31,6 +31,23 @@ mongoose
 /** Only start the server if Mongo Connects */
 
 const StartServer = () => {
+    // const server = router.use((req, res, next) => {
+    //     /**Log the Request */
+    //     Logging.info(`Incomming -> Method: [${req.method}] - Url: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+
+    //     res.on('finish', () => {
+    //         Logging.info(`Outgoing -> Method: [${req.method}] - Url: [${req.url}] - IP: [${req.socket.remoteAddress}] - Status: [${res.statusCode}]`);
+    //     });
+    //     next();
+    // });
+
+    // const { Server } = require('ws');
+    // const sockserver = new Server({ port: process.env.PORT || 443 });
+    // sockserver.on('connection', (ws) => {
+    //     console.log('New client connected!');
+    //     ws.on('close', () => console.log('Client has disconnected!'));
+    // });
+
     router.use(express.urlencoded({ extended: true }));
     router.use(express.json());
 
@@ -71,7 +88,7 @@ const StartServer = () => {
 
     // const https = require('https');
     setInterval(() => {
-        http.get('https://backend-hsnp.onrender.com');
+        fetch('https://backend-hsnp.onrender.com');
     }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
