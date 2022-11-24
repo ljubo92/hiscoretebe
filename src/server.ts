@@ -87,9 +87,9 @@ const StartServer = () => {
     });
 
     // const https = require('https');
-    setInterval(() => {
-        fetch('https://backend-hsnp.onrender.com');
-    }, 10 * 60 * 1000);
+    // setInterval(() => {
+    //     fetch('https://backend-hsnp.onrender.com');
+    // }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
 };
