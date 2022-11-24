@@ -1,5 +1,5 @@
 import express, { application } from 'express';
-import http from 'http';
+// import http from 'http';
 import mongoose from 'mongoose';
 import { config } from './config/config';
 import Logging from './library/Logging';
@@ -12,6 +12,7 @@ require('dotenv').config(); // load .env variables
 
 const router = express();
 /**Connect to mongoose */
+const https = require('https');
 
 mongoose
     .connect(config.mongo.url, {
@@ -78,7 +79,7 @@ const StartServer = () => {
         return res.status(404).json({ message: error.message });
     });
 
-    const server = http.createServer(router).listen(config.server.port, () => Logging.info(`server is running on port' ${config.server.port}.`));
+    const server = https.createServer(router).listen(config.server.port, () => Logging.info(`server is running on port' ${config.server.port}.`));
 
     const { Server } = require('ws');
     const sockserver = new Server({ server }).on('connection', (ws) => {
@@ -86,9 +87,8 @@ const StartServer = () => {
         ws.on('close', () => console.log('Client has disconnected!'));
     });
 
-    const https = require('https');
     setInterval(() => {
-        https.get('http://localhost:1337');
+        https.get('https://backend-hsnp.onrender.com');
     }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
