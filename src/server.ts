@@ -1,5 +1,5 @@
 import express, { application } from 'express';
-// import http from 'http';
+import http from 'http';
 import mongoose from 'mongoose';
 import { config } from './config/config';
 import Logging from './library/Logging';
@@ -12,7 +12,6 @@ require('dotenv').config(); // load .env variables
 
 const router = express();
 /**Connect to mongoose */
-const https = require('https');
 
 mongoose
     .connect(config.mongo.url, {
@@ -32,23 +31,6 @@ mongoose
 /** Only start the server if Mongo Connects */
 
 const StartServer = () => {
-    // const server = router.use((req, res, next) => {
-    //     /**Log the Request */
-    //     Logging.info(`Incomming -> Method: [${req.method}] - Url: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-
-    //     res.on('finish', () => {
-    //         Logging.info(`Outgoing -> Method: [${req.method}] - Url: [${req.url}] - IP: [${req.socket.remoteAddress}] - Status: [${res.statusCode}]`);
-    //     });
-    //     next();
-    // });
-
-    // const { Server } = require('ws');
-    // const sockserver = new Server({ port: process.env.PORT || 443 });
-    // sockserver.on('connection', (ws) => {
-    //     console.log('New client connected!');
-    //     ws.on('close', () => console.log('Client has disconnected!'));
-    // });
-
     router.use(express.urlencoded({ extended: true }));
     router.use(express.json());
 
@@ -79,7 +61,7 @@ const StartServer = () => {
         return res.status(404).json({ message: error.message });
     });
 
-    const server = https.createServer(router).listen(config.server.port, () => Logging.info(`server is running on port' ${config.server.port}.`));
+    const server = http.createServer(router).listen(config.server.port, () => Logging.info(`server is running on port' ${config.server.port}.`));
 
     const { Server } = require('ws');
     const sockserver = new Server({ server }).on('connection', (ws) => {
@@ -87,8 +69,9 @@ const StartServer = () => {
         ws.on('close', () => console.log('Client has disconnected!'));
     });
 
+    // const https = require('https');
     setInterval(() => {
-        https.get('https://backend-hsnp.onrender.com');
+        http.get('https://backend-hsnp.onrender.com');
     }, 10 * 60 * 1000);
 
     module.exports.sockserver = sockserver;
